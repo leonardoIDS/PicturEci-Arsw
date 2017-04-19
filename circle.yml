@@ -6,7 +6,7 @@ deployment:
   staging:
     branch: master
     heroku: 
-      appname: pictureci
+      appname: pictureci-arsw
 test:
   post:
     - mvn site
