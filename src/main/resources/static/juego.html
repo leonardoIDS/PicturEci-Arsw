@@ -66,13 +66,29 @@
     }
    
 </script>
+<script>
+function objeto() {
+    var objetos = ["perro","gato","vaca","pollito","libro","lapiz","mesa","sofa","escritorio","pez"]
+    var x = Math.floor((Math.random() * 10) + 1);
+    document.getElementById("demo").innerHTML = objetos[x];
+}
+</script>
+<script>
+function comprobar() {
+    if(document.getElementById("demo") == demo){
+        alert ("Gano");        
+    }else{
+        alert ("no es la palabra");   
+    }
+}
+</script>
     </head>
     <body class="loading" onload="cuentaAtras()" >
         <div id="wrapper">
         <div id="bg"></div>
         <div id="overlay"></div>
         <div id="main">
-        <div id="ventana" value="Tiempo Restante">
+        <div id="ventana" >
         <div id="reloj">     
         </div>
         </div>
@@ -80,12 +96,13 @@
                 <!-- Header -->
     <header id="header">
         <h1>PICTURECI</h1>                 
-        <h2>Tu objeto a dibujar es un Perro</h2> 
+        <h2>Tu objeto a dibujar es: </h2>
+        <p id="demo" ></p>
         <canvas id="miCanvas" width="600" height="600" style="border:3px solid #000000;background: #ffffff;">   </canvas>
         <canvas id="miCanvas2" width="600" height="600" style="border:3px solid #000000;background: #ffffff;">  </canvas>
         </br> </br>  </br> 
-        <input id="objeto" aling="center"  type="text" size="15" maxlength="30" value="Objeto a Adivinar" name="objeto">    
-        <button id="enviar" >Comprobar</button>
+        <input id="objeto"   type="text" size="15" maxlength="30" value="Objeto a Adivinar" name="objeto">    
+        <button id="enviar" onclick="comprobar()" >Comprobar</button>
         <button id="limpiar" >Limpiar</button>    
         <script src="app.js"></script>
         <script src="websocket.js"></script>                  
@@ -109,6 +126,7 @@
 
     <script>
             window.onload= cuentaAtras();
+            window.onload= objeto();
             
             window.onload = function () {
                 document.body.className = '';

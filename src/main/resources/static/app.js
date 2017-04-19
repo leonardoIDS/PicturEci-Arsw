@@ -130,6 +130,8 @@ function borrar2(evt) {
 
 
 
+
+
 function connect() {
     var socket = new SockJS('/stompendpoint');
     stompClient = Stomp.over(socket);
