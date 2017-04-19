@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PicturEci</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <!--[if lte IE 8]<script src="assets/js/ie/html5shiv.js"></script>-->
+        <link rel="stylesheet" href="assets/css/main.css"/>
+        <!--[if lte IE 8]<link rel="stylesheet" href="assets/css/ie8.css" />-->
+        <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    </head>
+    <body class="loading">
+
+
+        <div id="wrapper">
+            <div id="bg"></div>
+            <div id="overlay"></div>
+            <div id="main">
+
+                <!-- Header -->
+                <header id="header">
+
+                    <h1>PICTURECI</h1>
+    
+                    <canvas id="miCanvas" width="1200" height="500" style="border:3px solid #000000;background: #ffffff;">
+                    </canvas>
+                    </br>
+                    <button id="limpiar" >Limpiar</button>
+ 
+                    
+                    <script src="app.js"></script>
+                    <script src="websocket.js"></script>
+                    
+                </header>
+
+                <!-- Footer -->
+                <footer id="footer">
+                    <span class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
+                </footer>
+
+            </div>
+        </div>
+        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+        <script>
+            window.onload = function () {
+                document.body.className = '';
+            };
+            window.ontouchmove = function () {
+                return false;
+            };
+            window.onorientationchange = function () {
+                document.body.scrollTop = 0;
+            };
+        </script>
+    </body>
+</html>
