@@ -6,6 +6,7 @@
 package msgbroker;
 
 
+import java.awt.Point;
 import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,7 @@ public class STOMPMessagesHandler {
     SimpMessagingTemplate msgt;
     
     private int npoints = 0;
+    int Point = 0;
     
     List<Point> PointsPolygon = new ArrayList<>();
 
