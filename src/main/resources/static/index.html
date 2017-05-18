@@ -12,7 +12,10 @@
 	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
     </head>
+    
+
     <body align="center">
 	<!-- Header -->
 		<section id="header" align="center" valign="center" >
@@ -21,6 +24,14 @@
 		</header>
 		</section>
      
+    <h3 style="margin-top: 0">Seleccionar Sala</h3>
+    <h:panelGrid columns="1" style="margin-bottom: 10px">
+        <p:inputText id="txt1" value="#{sliderView.number1}" />
+        <p:slider for="txt1" />
+    </h:panelGrid>
+    
+    
+    
     
     <style>
     form {
@@ -42,6 +53,7 @@
       <INPUT type="submit" value="Enviar" onclick="objeto()" >   <INPUT type="reset" value="Borrar">
     </FORM> 
 <!-- Scripts -->
+
         <script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/jquery.scrolly.min.js"></script>
 	<script src="assets/js/jquery.poptrox.min.js"></script>

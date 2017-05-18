@@ -9,6 +9,9 @@ var canvas = document.getElementById("miCanvas");
 var canvas2 = document.getElementById("miCanvas2");
 var ctx = canvas.getContext("2d");
 var estaPintando = true;
+
+
+
 var limpiar = document.getElementById("limpiar");
 var Comprobar = document.getElementById("Comprobar");
 var stompClient = null;
@@ -19,20 +22,29 @@ limpiar.addEventListener("click",function(evt){
 
 canvas.addEventListener("mousedown", function (evt) {
     estaPintando = true;
+    
     comienzaAPintar(evt);
+    
 }, false);
 
 canvas.addEventListener("mouseup", finPintar, false);
 canvas.addEventListener("mouseout", finPintar, false);
 
 
+
 canvas2.addEventListener("mousedown", function (evt) {
+    
     estaPintando = true;
+    
+    
     comienzaAPintar(evt);
 }, false);
 
+
 canvas2.addEventListener("mouseup", finPintar, false);
+
 canvas2.addEventListener("mouseout", finPintar, false);
+
 
 function getCoordenadas(clientX, clientY) {
     
@@ -64,31 +76,30 @@ function comienzaAPintar(evt) {
     }
 }
 
-function comienzaAPintar2(evt) {
-    if (evt == null) estaPintando = false;    
-    /*establece una ruta o la reestablece */
-    ctx.beginPath();
-    if (estaPintando) {
-        canvas2.addEventListener("mousemove", pintarFigura, false);        
-        enviarDatos(evt, "comienzaAPintar");
-    }
-}
+
 
 
 function pintarFigura(evt, newCoords) {
     var coords;
+    
+    
     if (estaPintando)coords = getCoordenadas(evt.clientX, evt.clientY);
     else coords = getCoordenadas(newCoords.x, newCoords.y);
+
+
 
     ctx.lineTo(coords.x, coords.y);
     ctx.lineCap = "round";
     ctx.stroke();
 
     if (estaPintando) {
+        
+        
         enviarDatos(evt, "pintarFigura");
     }
 
 }
+
 
 function enviarDatos(evt, nombreDelMetodo) {
     websocket.send(JSON.stringify(

@@ -1,0 +1,8 @@
+{
+    "elements": {
+        "h:panelGrid": {},
+        "p:inputText": {},
+        "p:slider": {}
+    },
+    "attributes": {}
+}
