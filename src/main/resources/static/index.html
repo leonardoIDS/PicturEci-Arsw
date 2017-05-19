@@ -23,15 +23,12 @@
 			<h1>PICTURECI</h1>				
 		</header>
 		</section>
-     
-    <h3 style="margin-top: 0">Seleccionar Sala</h3>
-    <h:panelGrid columns="1" style="margin-bottom: 10px">
-        <p:inputText id="txt1" value="#{sliderView.number1}" />
-        <p:slider for="txt1" />
-    </h:panelGrid>
-    
-    
-    
+    <form action="/action_page.php">
+    Ingrese el numero de sala deseada (Entre 1 y 20):
+    <input type="number" name="quantity" min="1" max="20">
+    <input type="submit">
+    </form>     
+
     
     <style>
     form {
