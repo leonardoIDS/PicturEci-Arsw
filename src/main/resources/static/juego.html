@@ -8,136 +8,141 @@
         <link rel="stylesheet" href="assets/css/main.css"/>
         <!--[if lte IE 8]<link rel="stylesheet" href="assets/css/ie8.css" />-->
         <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->  
-        
+
         <style>
-    body{
-       
-    }
-    #ventana{      
-        margin:auto;
-        display:block;
-        position:absolute;
-        height:200px;
-        width:400px;
-        background: white;
-        border:solid 1px black;
-    }
-    #reloj{
-        position: absolute;
-        top:40px;
-        left:120px;
-        font-size: 80px;
-        color:dodgerblue;
-        text-align: center;
-    }
-</style>
-<script>
-    var segundos = 30;
-    var minutos = 2;
-    var llamada;
-    var ceromin='';
-    var ceroseg='';
-   
-    function cuentaAtras(){
-        devolvercero(minutos,segundos);
-        segundos = segundos % 60;
-        document.getElementById("reloj").innerHTML=ceromin+minutos+':'+ceroseg+segundos;
-         if (minutos ===0 && segundos ===0){
-            alert ("Se agotó el tiempo, no hay ganador");
-            clearTimeOut(llamada);
-        }
-        if (segundos ==0){
-            minutos --;
-            segundos+=60;   
-        }   
-        segundos --;
-        var llamada = setTimeout(cuentaAtras,1000);
-    }   
-    function devolvercero(minutos,segundos){
-        if (minutos<10){
-            ceromin='0';           
-        }
-        if (segundos<10){
-            ceroseg='0';           
-        }else {
-            ceroseg='';
-        }
-         return ceroseg;return ceromin;
-    }
-   
-</script>
-<script>
-function objeto() {
-    var objetos = ["perro","gato","vaca","pollito","libro","lapiz","mesa","sofa","escritorio","pez"]
-    var x = Math.floor((Math.random() * 10) + 1);
-    document.getElementById("demo").innerHTML = objetos[x];
-}
-</script>
-<script>
-function comprobar() {
-    if(document.getElementById("demo") == demo){
-        alert ("Gano");        
-    }else{
-        alert ("no es la palabra");   
-    }
-}
-</script>
+            body{
+
+            }
+            #ventana{      
+                margin:auto;
+                display:block;
+                position:absolute;
+                height:200px;
+                width:400px;
+                background: white;
+                border:solid 1px black;
+            }
+            #reloj{
+                position: absolute;
+                top:40px;
+                left:120px;
+                font-size: 80px;
+                color:dodgerblue;
+                text-align: center;
+            }
+        </style>
+        <script>
+            var segundos = 30;
+            var minutos = 2;
+            var llamada;
+            var ceromin = '';
+            var ceroseg = '';
+
+            function cuentaAtras() {
+                devolvercero(minutos, segundos);
+                segundos = segundos % 60;
+                document.getElementById("reloj").innerHTML = ceromin + minutos + ':' + ceroseg + segundos;
+                if (minutos === 0 && segundos === 0) {
+                    alert("Se agotó el tiempo, no hay ganador");
+                    clearTimeOut(llamada);
+                }
+                if (segundos == 0) {
+                    minutos--;
+                    segundos += 60;
+                }
+                segundos--;
+                var llamada = setTimeout(cuentaAtras, 1000);
+            }
+            function devolvercero(minutos, segundos) {
+                if (minutos < 10) {
+                    ceromin = '0';
+                }
+                if (segundos < 10) {
+                    ceroseg = '0';
+                } else {
+                    ceroseg = '';
+                }
+                return ceroseg;
+                return ceromin;
+            }
+
+        </script>
+        <script>
+            function objeto() {
+                var objetos = ["perro", "gato", "vaca", "pollito", "libro", "lapiz", "mesa", "sofa", "escritorio", "pez", "borrador", "silla", "escritorio"]
+                var x = Math.floor((Math.random() * 10) + 1);
+                document.getElementById("demo").innerHTML = objetos[x];
+            }
+        </script>
+        <script>
+            function comprobar() {
+                if (document.getElementById("demo") == demo) {
+                    alert("Gano");
+                } else {
+                    alert("no es la palabra");
+                }
+            }
+        </script>
     </head>
     <body class="loading" onload="cuentaAtras()" >
         <div id="wrapper">
-        <div id="bg"></div>
-        <div id="overlay"></div>
-        <div id="main">
-        <div id="ventana" >
-        <div id="reloj">     
-        </div>
-        </div>
-                
+            <div id="bg"></div>
+            <div id="overlay"></div>
+            <div id="main">
+                <div id="ventana" >
+                    <div id="reloj">     
+                    </div>
+                </div>
+
                 <!-- Header -->
-    <header id="header">
-        <h1>PICTURECI</h1>                 
-        <h2>Tu objeto a dibujar es: </h2>
-        <p id="demo" ></p>
-        <canvas id="miCanvas" width="600" height="600" style="border:3px solid #000000;background: #ffffff;">   </canvas>
-        <canvas id="miCanvas2" width="600" height="600" style="border:3px solid #000000;background: #ffffff;">  </canvas>
-        </br> </br>  </br> 
-        <input id="objeto"   type="text" size="15" maxlength="30" value="Objeto a Adivinar" name="objeto">    
-        <button id="enviar" onclick="comprobar()" >Comprobar</button>
-        <button id="limpiar" >Limpiar</button>    
-        <script src="app.js"></script>
-        <script src="websocket.js"></script>                  
-    </header>
+                <header id="header">
+                    <h1>PICTURECI</h1>                 
+                    <h2>Tu objeto a dibujar es: </h2>
+                    <p id="demo" ></p>
+                    <canvas id="miCanvas" width="600" height="600" style="border:3px solid #000000;background: #ffffff;">   </canvas>
+                    <canvas id="canvas2" width="600" height="600" style="border:3px solid #000000;background: #ffffff;"></canvas>
+
+
+
+                        </br> </br>  </br> 
+                        <input id="objeto"   type="text" size="15" maxlength="30" value="Objeto a Adivinar" name="objeto">    
+                        <button id="enviar" onclick="comprobar()" >Comprobar</button>
+                        <button id="limpiar" >Limpiar</button>    
+                        <script type="text/javascript"> connect();</script> 
+                        <script src="app.js"></script>
+                        <script src="websocket.js"></script>                  
+                </header>
 
                 <!-- Footer -->
-    <footer id="footer">
-        <span class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
-    </footer>
+                <footer id="footer">
+                    <span class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
+                </footer>
 
-    </div>
-    </div>     
-    
-        		<!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/jquery.poptrox.min.js"></script>
-    <script src="assets/js/skel.min.js"></script>
-    <script src="assets/js/util.js"></script>		
-    <script src="assets/js/main.js"></script>
+            </div>
+        </div>     
 
-    <script>
-            window.onload= cuentaAtras();
-            window.onload= objeto();
-            
-            window.onload = function () {
-                document.body.className = '';
-            };
-            window.ontouchmove = function () {
-                return false;
-            };
-            window.onorientationchange = function () {
-                document.body.scrollTop = 0;
-            };
-    </script>  
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.scrolly.min.js"></script>
+        <script src="assets/js/jquery.poptrox.min.js"></script>
+        <script src="assets/js/skel.min.js"></script>
+        <script src="assets/js/util.js"></script>		
+        <script src="assets/js/main.js"></script>
+
+        <script>
+                window.onload = cuentaAtras();
+                window.onload = objeto();
+
+                window.onload = function () {
+                    document.body.className = '';
+                };
+                window.ontouchmove = function () {
+                    return false;
+                };
+                window.onorientationchange = function () {
+                    document.body.scrollTop = 0;
+                };
+        </script>  
     </body>
 
 </html>
