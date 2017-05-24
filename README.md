@@ -1,9 +1,9 @@
 ### PicturEci
 
-###Computational Engineering
+##Computational Engineering
 
 
-###Escuela Colombiana De Ingenieria Julio Garavito
+##Escuela Colombiana De Ingenieria Julio Garavito
 
 
 Software Architecture 2017-01
@@ -32,3 +32,6 @@ Link CircleCI : https://circleci.com/gh/leonardoIDS/PicturEci-Arsw
 Link Heroku app:   https://pictureci-arsw.herokuapp.com/
   
   
+Autor:
+Leonardo Castro Susa
+Miguel Angel Rojas
