@@ -17,11 +17,17 @@ Ie the two players will have to draw and guess the other player's drawing at the
 And as if that were not enough, will have extreme mode in which randomly any of the strokes of players will be erased,
 Thus generating greater difficulty.
 
+
+![](img/Architecture.png)
 ![](img/start.png)
 ![](img/select.png)
 ![](img/play.png)
 ![](img/time.png)
-  
+
+
+A possible future advance in the architecture is considered to guarantee availability, and scalability. A posbile architecture of the same would be this:  
+
+![](img/Architecture2.png)
   
 Link Drive: https://drive.google.com/drive/folders/0B_4JeHYUqRALVDlVMWJRZmd5Vnc?usp=sharing (Only for teacher and autor )
 
