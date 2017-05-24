@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-var wsURI = "ws://" + document.location.host + document.location.pathname + "PicturEci";
+var wsURI = "ws://" + document.location.host + document.location.pathname + "/data/websocket";
 var websocket = new WebSocket(wsURI);
 
 websocket.onerror = function(evt){
@@ -17,7 +17,6 @@ websocket.onopen = function(evt){
 
 websocket.onmessage =  function(evt){
     console.log("Mensaje: " + evt.data);
-    
     var json = JSON.parse(evt.data);
     if(json.methodName == "comienzaAPintar") comienzaAPintar(null);
     if(json.methodName == "pintarFigura") pintarFigura(null, json.coords); 

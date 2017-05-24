@@ -5,27 +5,17 @@
  */
 /* global websocket */
 
-var canvas = document.getElementById("miCanvas");
-var ctx = canvas.getContext("2d");
+var canvas;
+var ctx;
 var estaPintando = true;
-var limpiar = document.getElementById("limpiar");
-var Comprobar = document.getElementById("Comprobar");
+var limpiar;
+var Comprobar;
 var stompClient = null;
-
-limpiar.addEventListener("click",function(evt){
-        borrar(evt);
-},false);
-
-canvas.addEventListener("mousedown", function (evt) {
-    estaPintando = true;    
-    comienzaAPintar(evt);    
-}, false);
-
-canvas.addEventListener("mouseup", finPintar, false);
-canvas.addEventListener("mouseout", finPintar, false);
+var wsURI = "ws://" + document.location.host + document.location.pathname + "/data/websocket";
+var websocket = new WebSocket(wsURI);
 
 function getCoordenadas(clientX, clientY) {
-    
+
     var rect = canvas.getBoundingClientRect();
 
     return{
@@ -33,24 +23,28 @@ function getCoordenadas(clientX, clientY) {
         y: clientY - rect.top
     };
 }
-
 function comienzaAPintar(evt) {
-    if (evt == null) estaPintando = false;    
+    if (evt == null) {
+        estaPintando = false;
+    }
     /*establece una ruta o la reestablece */
     ctx.beginPath();
     if (estaPintando) {
-        canvas.addEventListener("mousemove", pintarFigura, false);        
+        canvas.addEventListener("mousemove", pintarFigura, false);
         enviarDatos(evt, "comienzaAPintar");
     }
 }
 function pintarFigura(evt, newCoords) {
-    var coords;       
-    if (estaPintando)coords = getCoordenadas(evt.clientX, evt.clientY);
-    else coords = getCoordenadas(newCoords.x, newCoords.y);
+    var coords;
+    if (estaPintando) {
+        coords = getCoordenadas(evt.clientX, evt.clientY);
+    } else {
+        coords = getCoordenadas(newCoords.x, newCoords.y);
+    }
     ctx.lineTo(coords.x, coords.y);
     ctx.lineCap = "round";
     ctx.stroke();
-    if (estaPintando) { 
+    if (estaPintando) {
         enviarDatos(evt, "pintarFigura");
     }
 }
@@ -65,43 +59,47 @@ function enviarDatos(evt, nombreDelMetodo) {
             }
     ));
 }
-
 function finPintar(evt) {
-    
-    if (estaPintando){
+
+    if (estaPintando) {
         canvas.removeEventListener("mousemove", pintarFigura);
         //ctx.closePath();
     }
 }
-
 function borrar(evt) {
-    canvas.width=canvas.width;
-    enviarDatos(evt,"borrar");
+    canvas.width = canvas.width;
+    enviarDatos(evt, "borrar");
 }
 
 function connect() {
-    $.ajax({
-    url: "/topic",
-    type: 'PUT',
-    data: JSON.stringify(canvas),
-    contentType: "application/json"})
-    var socket = new SockJS('/');
+    var socket = new SockJS('/stompendpoint');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
-        stompClient.subscribe('/topic'+canvas, function (data) {            
+        //console.log("Ya tengo los datossssssssssssssssssssssssssssssssssss");
+
+        clase = sessionStorage.getItem("clase");
+        stompClient.subscribe('/topic/newdibujo.' + clase, function (data) {
+            console.log("newdibujo");
             theObject = JSON.parse(data.body);
+            var ctx = canvas.getContext('2d');
+            ctx.beginPath();
+            ctx.arc(theObject["x"], theObject["y"], 1, 0, 2 * Math.PI);
+
             ctx.stroke();
+
+
         });
     });
 }
-sendPoint = function () {
 
-    stompClient.send("/topic"+canvas, {}, JSON.stringify({x: x, y: y}));
-    stompClient.send("/topic"+canvas2, {}, JSON.stringify({x: x, y: y}));
-    
+
+
+sendPoint = function () {
+    stompClient.send("/topic" + canvas, {}, JSON.stringify({x: x, y: y}));
+
 }
-function suscribir(){
+function suscribir() {
     disconnect();
     connect();
 }
@@ -109,10 +107,9 @@ function disconnect() {
     if (stompClient != null) {
         stompClient.disconnect();
     }
-    
+
     console.log("Disconnected");
 }
-
 function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
     return {
@@ -122,19 +119,45 @@ function getMousePos(canvas, evt) {
 }
 
 
-
 $(document).ready(
         function () {
+            canvas = document.getElementById("miCanvas");
+            console.log(canvas);
+            ctx = canvas.getContext("2d");
+            limpiar = document.getElementById("limpiar");
+            Comprobar = document.getElementById("Comprobar");
+            limpiar.addEventListener("click", function (evt) {
+                borrar(evt);
+            }, false);
+            canvas.addEventListener("mousedown", function (evt) {
+                estaPintando = true;
+                comienzaAPintar(evt);
+            }, false);
+            canvas.addEventListener("mouseup", finPintar, false);
+            canvas.addEventListener("mouseout", finPintar, false);
             connect();
-            console.info('connecting to websockets');     
+            console.info('connecting to websockets');
+            canvas = document.getElementById('miCanvas');
             context = canvas.getContext('2d');
-            canvas.addEventListener('mousedown', function (evt) {
+            if (Math.random() == 1) {
+                context.strokeStyle = '#3B83BD';
+            } else {
+                context.strokeStyle = '#CC0605';
+            }
+            context.lineWidth = 1;
+            canvas.addEventListener('mousedown', false);
+            canvas.addEventListener('mouseup', false);
+            canvas.addEventListener('mousemove', function (evt) {
                 var mousePos = getMousePos(canvas, evt);
                 x = mousePos.x;
                 y = mousePos.y;
                 sendPoint();
+
+                //stompClient.send("/app/newpoint", {}, JSON.stringify({x: x, y: y}));
                 var mensaje = 'Position' + mousePos.x + mousePos.y;
+
             }, false);
+
         }
 );
 

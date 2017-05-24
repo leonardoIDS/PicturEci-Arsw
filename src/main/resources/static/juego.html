@@ -6,6 +6,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <!--[if lte IE 8]<script src="assets/js/ie/html5shiv.js"></script>-->
         <link rel="stylesheet" href="assets/css/main.css"/>
+        <script src="/webjars/jquery/jquery.min.js"></script>
+        <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+        <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+        <script src="app.js"></script>
+
+
         <!--[if lte IE 8]<link rel="stylesheet" href="assets/css/ie8.css" />-->
         <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->  
 
@@ -104,13 +110,12 @@
 
 
 
-                        </br> </br>  </br> 
-                        <input id="objeto"   type="text" size="15" maxlength="30" value="Objeto a Adivinar" name="objeto">    
-                        <button id="enviar" onclick="comprobar()" >Comprobar</button>
-                        <button id="limpiar" >Limpiar</button>    
-                        <script type="text/javascript"> connect();</script> 
-                        <script src="app.js"></script>
-                        <script src="websocket.js"></script>                  
+                    </br> </br>  </br> 
+                    <input id="objeto"   type="text" size="15" maxlength="30" value="Objeto a Adivinar" name="objeto">    
+                    <button id="enviar" onclick="comprobar()" >Comprobar</button>
+                    <button id="limpiar" >Limpiar</button> 
+                    <script src="app.js"></script>
+                    <script src="websocket.js"></script>                  
                 </header>
 
                 <!-- Footer -->
@@ -130,18 +135,18 @@
         <script src="assets/js/main.js"></script>
 
         <script>
-                window.onload = cuentaAtras();
-                window.onload = objeto();
+                        window.onload = cuentaAtras();
+                        window.onload = objeto();
 
-                window.onload = function () {
-                    document.body.className = '';
-                };
-                window.ontouchmove = function () {
-                    return false;
-                };
-                window.onorientationchange = function () {
-                    document.body.scrollTop = 0;
-                };
+                        window.onload = function () {
+                            document.body.className = '';
+                        };
+                        window.ontouchmove = function () {
+                            return false;
+                        };
+                        window.onorientationchange = function () {
+                            document.body.scrollTop = 0;
+                        };
         </script>  
     </body>
 
